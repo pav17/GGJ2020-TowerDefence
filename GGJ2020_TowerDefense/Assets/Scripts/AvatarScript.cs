@@ -6,16 +6,19 @@ public class AvatarScript : MonoBehaviour
 {
     public AvatarState state; 
     public float speed;
+    public GameObject buildUI;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        Keybinds();
+
         switch (state)
         {
             case AvatarState.INACTIVE:
@@ -48,6 +51,24 @@ public class AvatarScript : MonoBehaviour
 
     void UpdateBuilding()
     {
+        
+    }
+
+    void Keybinds()
+    {
+        if (Input.GetKeyDown(KeyCode.B))
+        {
+            if (state == AvatarState.ACTIVE)
+            {
+                state = AvatarState.BUILDING;
+                buildUI.SetActive(true);
+            }
+            else
+            {
+                state = AvatarState.ACTIVE;
+                buildUI.SetActive(false);
+            }
+        }
     }
 }
 
