@@ -39,7 +39,7 @@ public class EnemyScript : MonoBehaviour
         movedirection = movedirection.normalized;
 
         transform.Translate(movedirection * speed * Time.deltaTime);
-        if (Mathf.Abs(waypoint.x - transform.position.x) <= 1 && Mathf.Abs(waypoint.y - transform.position.y) <= 1)
+        if (Mathf.Abs(waypoint.x - transform.position.x) <= 0.1f && Mathf.Abs(waypoint.y - transform.position.y) <= 0.1f)
         {
             path.RemoveAt(0);
         }
