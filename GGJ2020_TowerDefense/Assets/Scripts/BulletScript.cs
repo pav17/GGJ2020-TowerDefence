@@ -6,6 +6,7 @@ public class BulletScript : MonoBehaviour
 {
     public Vector3 origin;
     public GameObject target;
+    public Vector3 target_location;
     public Effect effect;
 
     public int damage;
@@ -21,6 +22,11 @@ public class BulletScript : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
+        if (target is object)
+        {
+            target_location = target.transform.position;
+        }
+
         if (timer >= 1f)
         {
             HitTarget();
@@ -37,5 +43,7 @@ public class BulletScript : MonoBehaviour
         {
             e_script.TakeDamage(damage);
         }
+
+        GameObject.Destroy(this.gameObject);
     }
 }

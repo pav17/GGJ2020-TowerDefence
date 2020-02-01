@@ -17,8 +17,8 @@ public class TowerScript : MonoBehaviour
     public float shot_rate_base;
     private float shot_radius;
     public float shot_radius_base;
-    private float shot_damage;
-    public float shot_damage_base;
+    private int shot_damage;
+    public int shot_damage_base;
 
     // Control variables
     private bool is_active;
@@ -61,7 +61,7 @@ public class TowerScript : MonoBehaviour
 
         shot_rate = shot_rate_base * t_base.firerate_ratio * t_turret.firerate_ratio;
         shot_radius = shot_radius_base * t_turret.radius_ratio;
-        shot_damage = shot_damage_base * t_turret.damage_ratio;
+        shot_damage = (int)(shot_damage_base * t_turret.damage_ratio);
         bullet_type = t_core.bullet_type;
     }
 
@@ -93,9 +93,10 @@ public class TowerScript : MonoBehaviour
 
     void Shoot(GameObject target)
     {
-        GameObject bullet = GameObject.Instantiate(bullet_type);
+        GameObject bullet = GameObject.Instantiate(bullet_type, gameObject.transform);
         BulletScript b_script = bullet.GetComponent<BulletScript>();
 
-        
+        b_script.damage = shot_damage;
+        b_script.target = target;
     }
 }
