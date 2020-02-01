@@ -62,6 +62,7 @@ public class TowerScript : MonoBehaviour
         shot_rate = shot_rate_base * t_base.firerate_ratio * t_turret.firerate_ratio;
         shot_radius = shot_radius_base * t_turret.radius_ratio;
         shot_damage = shot_damage_base * t_turret.damage_ratio;
+        bullet_type = t_core.bullet_type;
     }
 
     void UpdateTimer()
@@ -92,5 +93,9 @@ public class TowerScript : MonoBehaviour
 
     void Shoot(GameObject target)
     {
+        GameObject bullet = GameObject.Instantiate(bullet_type);
+        BulletScript b_script = bullet.GetComponent<BulletScript>();
+
+        
     }
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TowerCore : MonoBehaviour
 {
+    public GameObject bullet_type;
+
     // Start is called before the first frame update
     void Start()
     {

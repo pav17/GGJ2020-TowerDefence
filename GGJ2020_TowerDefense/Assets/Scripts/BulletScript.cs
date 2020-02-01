@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
+    public GameObject target;
+    public Effect effect;
+
+    public float damage;
+    private float timer;
+
     // Start is called before the first frame update
     void Start()
     {
