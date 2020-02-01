@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public List<EnemyScript> enemies;
+    public List<GameObject> enemies;
 
     // Start is called before the first frame update
     void Start()
     {
-        enemies = new List<EnemyScript>();
-        enemies.AddRange(GameObject.FindObjectsOfType<EnemyScript>());
+        enemies = new List<GameObject>();
+        //enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
     }
 
     // Update is called once per frame
@@ -22,19 +22,19 @@ public class GameController : MonoBehaviour
 
     void GetEnemies()
     {
-        enemies = new List<EnemyScript>();
-        enemies.AddRange(GameObject.FindObjectsOfType<EnemyScript>());
+        enemies = new List<GameObject>();
+        enemies.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
     }
 
     void ProcessEnemies()
     {
-        foreach (EnemyScript enemy in enemies)
+        foreach (GameObject enemy in enemies)
         {
-            if (enemy.ready_to_delete)
+            /*if (enemy.ready_to_delete)
             {
                 GameObject.Destroy(enemy);
                 ProcessEnemyDrop();
-            }
+            }*/
         }
     }
 
