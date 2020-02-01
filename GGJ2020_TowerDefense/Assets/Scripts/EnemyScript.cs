@@ -6,19 +6,43 @@ public class EnemyScript : MonoBehaviour
 {
     public int health;
     public float speed;
+    public List<Vector2> path;
     public List<Effect> effects;
     public bool ready_to_delete;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        speed = 1.0f;
+        path = new List<Vector2>();
+        path.Add(new Vector2(0, 0));
+        path.Add(new Vector2(4, 5));
     }
 
     // Update is called once per frame
     void Update()
     {
         ProcessEffects();
+        if (path.Count != 0)
+        {
+            ProcessMove();
+        }
+    }
+
+    public void ProcessMove()
+    {
+        Vector2 waypoint = path[0];
+
+        Vector2 movedirection = new Vector2();
+        movedirection.x = waypoint.x - transform.position.x;
+        movedirection.y = waypoint.y - transform.position.y;
+        movedirection = movedirection.normalized;
+
+        transform.Translate(movedirection * speed * Time.deltaTime);
+        if (Mathf.Abs(waypoint.x - transform.position.x) <= 1 && Mathf.Abs(waypoint.y - transform.position.y) <= 1)
+        {
+            path.RemoveAt(0);
+        }
     }
 
     public void ProcessEffects()
